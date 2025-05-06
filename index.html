@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV Project - Lab 3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <img id="profile-img" alt="Profile Picture" />
+    <h2 id="name"></h2>
+    <p id="position"></p>
+  </div>
+
+  <div class="main-content">
+    <section>
+      <h3>About Me</h3>
+      <p id="about-me"></p>
+      <textarea id="about-edit" style="display:none;"></textarea>
+      <button onclick="editAbout()">Edit</button>
+      <button onclick="saveAbout()" style="display:none;" id="save-about-btn">Save</button>
+    </section>
+
+    <section>
+      <h3>Education</h3>
+      <ul id="education-list"></ul>
+      <input type="text" id="new-edu" placeholder="New education info" />
+      <button onclick="addEducation()">Add</button>
+    </section>
+
+    <section>
+      <h3>Experience</h3>
+      <ul id="experience-list"></ul>
+      <input type="text" id="new-exp" placeholder="New experience info" />
+      <button onclick="addExperience()">Add</button>
+    </section>
+
+    <section>
+      <h3>Skills</h3>
+      <ul id="skills-list"></ul>
+      <input type="text" id="new-skill" placeholder="New skill" />
+      <button onclick="addSkill()">Add</button>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
