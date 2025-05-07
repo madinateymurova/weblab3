@@ -1,94 +1,120 @@
-const profileData = {
-  image: "https://via.placeholder.com/150",
-  name: "John Doe",
-  position: "Cybersecurity Student",
-  about: "I'm passionate about defending systems and learning about vulnerabilities."
+const userData = {
+  name: "RICHARD SANCHEZ",
+  title: "MARKETING MANAGER",
+  profile: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+  profileImage: "photo.png.png",
+  contact: [
+    "+123-456-7890",
+    "hello@reallygreatsite.com",
+    "123 Anywhere St., Any City",
+    "www.reallygreatsite.com"
+  ],
+  education: [
+    "2029 - 2030 | Wardiere University | Master of Business Management",
+    "2025 - 2029 | Wardiere University | Bachelor of Business | GPA: 3.8"
+  ],
+  skills: [
+    "Project Management", "Public Relations", "Teamwork", "Time Management",
+    "Leadership", "Effective Communication", "Critical Thinking"
+  ],
+  languages: [
+    "English (Fluent)", "French (Fluent)", "German (Basics)", "Spanish (Intermediate)"
+  ],
+  experience: [
+    "2030 - Present | Borcelle Studio | Marketing Manager & Specialist",
+    "2025 - 2029 | Fauget Studio | Marketing Manager & Specialist",
+    "2024 - 2025 | Studio Showde | Marketing Manager & Specialist"
+  ],
+  references: [
+    { name: "Estelle Darcy", role: "CTO", company: "Wardiere Inc.", contact: "123-456-7890", email: "hello@reallygreatsite.com" },
+    { name: "Harper Richard", role: "CEO", company: "Wardiere Inc.", contact: "123-456-7890", email: "hello@reallygreatsite.com" }
+  ]
 };
 
-const educationList = [
-  "BS in Computer Science - Baku State University (2021-2025)",
-  "Ethical Hacking Course - TryHackMe"
-];
 
-const experienceList = [
-  "Intern - SOC Analyst (2024)",
-  "Participant - Cyber Security Bootcamp"
-];
+window.onload = () => {
+  document.getElementById("name").textContent = userData.name;
+  document.getElementById("title").textContent = userData.title;
+  document.getElementById("profile-text").textContent = userData.profile;
+  document.getElementById("profile-img").src = userData.profileImage;
 
-const skillsList = [
-  "Kali Linux", "Nmap", "Wireshark", "Python", "Burp Suite"
-];
+  loadList("contact-info", userData.contact);
+  loadList("education-info", userData.education);
+  loadList("skills-info", userData.skills);
+  loadList("languages-info", userData.languages);
+  loadList("experience-info", userData.experience);
+  loadReferences();
+};
 
 
-document.getElementById("profile-img").src = profileData.image;
-document.getElementById("name").textContent = profileData.name;
-document.getElementById("position").textContent = profileData.position;
-document.getElementById("about-me").textContent = profileData.about;
-
-function populateList(id, data) {
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  data.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    ul.appendChild(li);
+function loadList(id, array) {
+  const container = document.getElementById(id);
+  container.innerHTML = "";
+  array.forEach(item => {
+    const div = document.createElement("div");
+    div.textContent = item;
+    container.appendChild(div);
   });
 }
 
-populateList("education-list", educationList);
-populateList("experience-list", experienceList);
-populateList("skills-list", skillsList);
 
-function editAbout() {
-  const aboutText = document.getElementById("about-me");
-  const textarea = document.getElementById("about-edit");
-  const saveBtn = document.getElementById("save-about-btn");
-
-  textarea.style.display = "block";
-  saveBtn.style.display = "inline";
-  textarea.value = aboutText.textContent;
-  aboutText.style.display = "none";
+function loadReferences() {
+  const refContainer = document.getElementById("references-info");
+  refContainer.innerHTML = "";
+  userData.references.forEach(ref => {
+    const div = document.createElement("div");
+    div.className = "reference-item";
+    div.innerHTML = `<p><strong>${ref.name}</strong><br>${ref.company} / ${ref.role}<br>${ref.contact}<br>${ref.email}</p>`;
+    refContainer.appendChild(div);
+  });
 }
 
-function saveAbout() {
-  const aboutText = document.getElementById("about-me");
-  const textarea = document.getElementById("about-edit");
-  const saveBtn = document.getElementById("save-about-btn");
 
-  profileData.about = textarea.value;
-  aboutText.textContent = profileData.about;
-  aboutText.style.display = "block";
-  textarea.style.display = "none";
-  saveBtn.style.display = "none";
+function editProfile() {
+  document.getElementById("profile-text").style.display = "none";
+  const textarea = document.getElementById("profile-edit");
+  textarea.style.display = "block";
+  textarea.value = userData.profile;
+  document.getElementById("save-profile").style.display = "inline";
+}
+
+function saveProfile() {
+  const newText = document.getElementById("profile-edit").value.trim();
+  if (newText) {
+    userData.profile = newText;
+    document.getElementById("profile-text").textContent = newText;
+  }
+  document.getElementById("profile-text").style.display = "block";
+  document.getElementById("profile-edit").style.display = "none";
+  document.getElementById("save-profile").style.display = "none";
 }
 
 
 function addEducation() {
-  const input = document.getElementById("new-edu");
-  const value = input.value.trim();
-  if (value) {
-    educationList.push(value);
-    populateList("education-list", educationList);
-    input.value = "";
+  const val = document.getElementById("new-edu").value.trim();
+  if (val) {
+    userData.education.push(val);
+    loadList("education-info", userData.education);
+    document.getElementById("new-edu").value = "";
   }
 }
 
-function addExperience() {
-  const input = document.getElementById("new-exp");
-  const value = input.value.trim();
-  if (value) {
-    experienceList.push(value);
-    populateList("experience-list", experienceList);
-    input.value = "";
-  }
-}
 
 function addSkill() {
-  const input = document.getElementById("new-skill");
-  const value = input.value.trim();
-  if (value) {
-    skillsList.push(value);
-    populateList("skills-list", skillsList);
-    input.value = "";
+  const val = document.getElementById("new-skill").value.trim();
+  if (val) {
+    userData.skills.push(val);
+    loadList("skills-info", userData.skills);
+    document.getElementById("new-skill").value = "";
+  }
+}
+
+
+function addExperience() {
+  const val = document.getElementById("new-exp").value.trim();
+  if (val) {
+    userData.experience.push(val);
+    loadList("experience-info", userData.experience);
+    document.getElementById("new-exp").value = "";
   }
 }
