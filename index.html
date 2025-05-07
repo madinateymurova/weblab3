@@ -3,45 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CV Project - Lab 3</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Richard Sanchez - Professional CV</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <img id="profile-img" alt="Profile Picture" />
-    <h2 id="name"></h2>
-    <p id="position"></p>
-  </div>
+  <div class="cv-container">
+    
+    <div class="cv-sidebar">
+      <div class="profile-section">
+        <img id="profile-img" class="profile-img" alt="Profile Photo" />
+      </div>
 
-  <div class="main-content">
-    <section>
-      <h3>About Me</h3>
-      <p id="about-me"></p>
-      <textarea id="about-edit" style="display:none;"></textarea>
-      <button onclick="editAbout()">Edit</button>
-      <button onclick="saveAbout()" style="display:none;" id="save-about-btn">Save</button>
-    </section>
+      <div class="contact-section">
+        <h2 class="section-title">CONTACT</h2>
+        <div id="contact-info"></div>
+      </div>
 
-    <section>
-      <h3>Education</h3>
-      <ul id="education-list"></ul>
-      <input type="text" id="new-edu" placeholder="New education info" />
-      <button onclick="addEducation()">Add</button>
-    </section>
+      <div class="education-section">
+        <h2 class="section-title">EDUCATION</h2>
+        <div id="education-info"></div>
+        <input type="text" id="new-edu" placeholder="New education info" />
+        <button onclick="addEducation()">Add</button>
+      </div>
 
-    <section>
-      <h3>Experience</h3>
-      <ul id="experience-list"></ul>
-      <input type="text" id="new-exp" placeholder="New experience info" />
-      <button onclick="addExperience()">Add</button>
-    </section>
+      <div class="skills-section">
+        <h2 class="section-title">SKILLS</h2>
+        <div id="skills-info"></div>
+        <input type="text" id="new-skill" placeholder="New skill" />
+        <button onclick="addSkill()">Add</button>
+      </div>
 
-    <section>
-      <h3>Skills</h3>
-      <ul id="skills-list"></ul>
-      <input type="text" id="new-skill" placeholder="New skill" />
-      <button onclick="addSkill()">Add</button>
-    </section>
+      <div class="languages-section">
+        <h2 class="section-title">LANGUAGES</h2>
+        <div id="languages-info"></div>
+      </div>
+    </div>
+
+    
+    <div class="cv-main">
+      <div class="header-section">
+        <h1 id="name" class="name"></h1>
+        <h2 id="title" class="title"></h2>
+      </div>
+
+      <div class="profile-section">
+        <h2 class="section-title">PROFILE</h2>
+        <p id="profile-text" class="profile-text"></p>
+        <textarea id="profile-edit" style="display:none;"></textarea>
+        <button onclick="editProfile()">Edit</button>
+        <button onclick="saveProfile()" style="display:none;" id="save-profile">Save</button>
+      </div>
+
+      <div class="experience-section">
+        <h2 class="section-title">WORK EXPERIENCE</h2>
+        <div id="experience-info"></div>
+        <input type="text" id="new-exp" placeholder="New experience" />
+        <button onclick="addExperience()">Add</button>
+      </div>
+
+      <div class="references-section">
+        <h2 class="section-title">REFERENCES</h2>
+        <div id="references-info" class="references-grid"></div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
